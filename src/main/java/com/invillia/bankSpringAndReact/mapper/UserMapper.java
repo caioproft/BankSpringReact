@@ -21,6 +21,9 @@ public class UserMapper {
         userResponse.setId(user.getId());
         userResponse.setName(user.getName());
         userResponse.setEmail(user.getEmail());
+        userResponse.setNumber(user.getNumber());
+        userResponse.setAgency(user.getAgency());
+        userResponse.setBalance(user.getBalance());
         userResponse.setCreatedAt(user.getCreatedAt().format(formatter));
 
         return userResponse;
@@ -38,6 +41,9 @@ public class UserMapper {
 
         user.setName(userRequest.getName());
         user.setEmail(userRequest.getEmail());
+        user.setNumber(userRequest.getNumber());
+        user.setAgency(userRequest.getAgency());
+        user.setBalance(userRequest.getBalance());
 
         return user;
     }

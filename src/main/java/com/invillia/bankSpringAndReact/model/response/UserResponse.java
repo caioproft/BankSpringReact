@@ -1,7 +1,6 @@
 package com.invillia.bankSpringAndReact.model.response;
 
 import lombok.Data;
-import java.time.LocalDateTime;
 
 @Data
 public class UserResponse {
@@ -12,5 +11,12 @@ public class UserResponse {
 
     private String email;
 
+    private String number;
+
+    private String agency;
+
+    private Double balance;
+
     private String createdAt;
 }
+

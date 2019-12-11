@@ -1,6 +1,7 @@
 package com.invillia.bankSpringAndReact.service;
 
 import com.invillia.bankSpringAndReact.excepctions.IdNotFoundException;
+import com.invillia.bankSpringAndReact.excepctions.InvalidValueException;
 import com.invillia.bankSpringAndReact.mapper.UserMapper;
 import com.invillia.bankSpringAndReact.model.entity.User;
 import com.invillia.bankSpringAndReact.model.request.UserRequest;
@@ -59,5 +60,28 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(IdNotFoundException::new);
         userRepository.delete(user);
+    }
+
+    @Transactional
+    public void withdraw(Long id, double value){
+        User user = userRepository.findById(id).orElseThrow(IdNotFoundException::new);
+        if (value >= 0.0 && value <= user.getBalance() ){
+            user.setBalance(user.getBalance() - value);
+            userRepository.save(user);
+        }
+        else{
+            throw  new InvalidValueException();
+        }
+    }
+
+    @Transactional
+    public void deposit(Long id, double value){
+        User user = userRepository.findById(id).orElseThrow(IdNotFoundException::new);
+        if (value >= 0) {
+            user.setBalance(user.getBalance() + value);
+        }
+        else{
+            throw new InvalidValueException();
+        }
     }
 }

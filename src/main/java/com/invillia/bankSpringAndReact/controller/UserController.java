@@ -1,7 +1,9 @@
 package com.invillia.bankSpringAndReact.controller;
 
 
+import com.invillia.bankSpringAndReact.model.request.DepositRequest;
 import com.invillia.bankSpringAndReact.model.request.UserRequest;
+import com.invillia.bankSpringAndReact.model.request.WithdrawRequest;
 import com.invillia.bankSpringAndReact.model.response.UserResponse;
 import com.invillia.bankSpringAndReact.service.UserService;
 import org.springframework.http.HttpEntity;
@@ -49,5 +51,17 @@ public class UserController {
     public HttpEntity<?> delete(@PathVariable final Long id){
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/withdraw")
+    public HttpEntity<?> withdraw(@PathVariable Long id, @RequestBody WithdrawRequest withdrawRequest){
+        userService.withdraw(id, withdrawRequest.getWithdrawValue());
+        return ResponseEntity.accepted().build();
+    }
+
+    @PutMapping("/{id}/deposit")
+    public HttpEntity<?> deposit(@PathVariable Long id, @RequestBody DepositRequest depositRequest){
+        userService.deposit(id, depositRequest.getDepositValue());
+        return ResponseEntity.accepted().build();
     }
 }

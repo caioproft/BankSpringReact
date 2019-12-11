@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,8 +25,16 @@ public class User {
     @Column
     private String email;
 
+    @Column(nullable = false)
+    private String number;
+
+    @Column(nullable = false)
+    private String agency;
+
+    @Column(nullable = false)
+    private double balance;
+
     @CreationTimestamp
     @Column
     private LocalDateTime createdAt;
-
 }
