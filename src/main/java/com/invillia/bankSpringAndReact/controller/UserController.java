@@ -53,15 +53,15 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/withdraw")
-    public HttpEntity<?> withdraw(@PathVariable Long id, @RequestBody WithdrawRequest withdrawRequest){
-        userService.withdraw(id, withdrawRequest.getWithdrawValue());
-        return ResponseEntity.accepted().build();
-    }
-
-    @PutMapping("/{id}/deposit")
-    public HttpEntity<?> deposit(@PathVariable Long id, @RequestBody DepositRequest depositRequest){
-        userService.deposit(id, depositRequest.getDepositValue());
-        return ResponseEntity.accepted().build();
-    }
+//    @PutMapping("/{id}/withdraw")
+//    public HttpEntity<?> withdraw(@PathVariable Long id, @RequestBody WithdrawRequest withdrawRequest){
+//        userService.withdraw(id, withdrawRequest.getWithdrawValue());
+//        return ResponseEntity.accepted().build();
+//    }
+//
+//    @PutMapping("/{id}/deposit")
+//    public HttpEntity<?> deposit(@PathVariable Long id, @RequestBody DepositRequest depositRequest){
+//        userService.deposit(id, depositRequest.getDepositValue());
+//        return ResponseEntity.accepted().build();
+//    }
 }
