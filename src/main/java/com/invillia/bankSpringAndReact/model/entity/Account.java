@@ -26,7 +26,7 @@ public class Account {
     private String agency;
 
     @Column
-    private Double balance;
+    private Double balance = 0.0;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
