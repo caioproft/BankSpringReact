@@ -5,6 +5,8 @@ import com.invillia.bankSpringAndReact.excepctions.InvalidValueException;
 import com.invillia.bankSpringAndReact.mapper.AccountMapper;
 import com.invillia.bankSpringAndReact.model.entity.Account;
 import com.invillia.bankSpringAndReact.model.entity.User;
+import com.invillia.bankSpringAndReact.model.request.DepositRequest;
+import com.invillia.bankSpringAndReact.model.request.WithdrawRequest;
 import com.invillia.bankSpringAndReact.model.response.AccountResponse;
 import com.invillia.bankSpringAndReact.repository.AccountRepository;
 import com.invillia.bankSpringAndReact.service.AccountService;
@@ -41,10 +43,13 @@ public class AccountServiceImplementation implements AccountService {
     }
 
     @Transactional
-    public void withdraw(final Double value, final Account account){
-        if(value > 0){
-            if (account.getBalance() >= value){
-                account.setBalance(account.getBalance() - value);
+    public void withdraw(WithdrawRequest withdrawRequest){
+        if(withdrawRequest.getWithdrawValue() > 0){
+            final Account account = accountRepository.findById(withdrawRequest.getIdAccount()).orElseThrow(() -> new IdNotFoundException("Conta não encontrada!"));
+
+            if (account.getBalance() >= withdrawRequest.getWithdrawValue()){
+                account.setBalance(account.getBalance() - withdrawRequest.getWithdrawValue());
+                accountRepository.save(account);
             }
             else{
                 throw new InvalidValueException("Você não possui saldo suficiente!");
@@ -53,17 +58,20 @@ public class AccountServiceImplementation implements AccountService {
         else {
             throw new InvalidValueException("O valor do saque não pode ser negativo!");
         }
-        accountRepository.save(account);
+
     }
 
     @Transactional
-    public void deposit (final Double value, final Account account){
-        if (value > 0){
-            account.setBalance(account.getBalance() + value);
+    public void deposit (DepositRequest depositRequest){
+        if (depositRequest.getDepositValue()> 0){
+            final Account account = accountRepository.findById(depositRequest.getIdAccount()).orElseThrow(() -> new IdNotFoundException("Conta não encontrada"));
+
+            account.setBalance(account.getBalance() + depositRequest.getDepositValue());
+            accountRepository.save(account);
         }
         else{
             throw new InvalidValueException("Não é possível depositar um valor negativo!");
         }
-        accountRepository.save(account);
+
     }
 }
