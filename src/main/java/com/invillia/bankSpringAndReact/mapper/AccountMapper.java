@@ -13,8 +13,6 @@ public class AccountMapper {
         return AccountResponse.builder()
                 .id(account.getId())
                 .nameUser(account.getUser().getName())
-                .agency(account.getAgency())
-                .number(account.getNumber())
                 .balance(account.getBalance())
                 .build();
     }

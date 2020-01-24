@@ -18,6 +18,4 @@ public class UserSaveRequest {
     @NotBlank (message = "O e-mail não pode estar em branco!")
     private String email;
 
-
-
 }
