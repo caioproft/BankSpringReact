@@ -15,7 +15,7 @@ public class AccountRequest {
     @NotNull
     private Long id;
 
-    @NotNull
+    @NotBlank
     private Long userId;
 
     @NotBlank

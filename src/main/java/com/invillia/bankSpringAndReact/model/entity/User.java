@@ -1,8 +1,6 @@
 package com.invillia.bankSpringAndReact.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,6 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -22,6 +21,7 @@ public class User {
     private Long id;
 
     @Column (nullable = false)
+    @NonNull
     private String name;
 
     @Column (nullable = false)
