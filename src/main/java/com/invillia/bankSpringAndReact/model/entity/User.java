@@ -28,7 +28,7 @@ public class User {
     private String email;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-   private Account account;
+    private Account account;
 
     @CreationTimestamp
     @Column (name = "created_at")
