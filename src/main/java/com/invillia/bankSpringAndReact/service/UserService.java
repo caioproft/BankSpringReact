@@ -1,10 +1,9 @@
 package com.invillia.bankSpringAndReact.service;
 
 import com.invillia.bankSpringAndReact.excepctions.IdNotFoundException;
-import com.invillia.bankSpringAndReact.excepctions.InvalidValueException;
 import com.invillia.bankSpringAndReact.mapper.UserMapper;
 import com.invillia.bankSpringAndReact.model.entity.User;
-import com.invillia.bankSpringAndReact.model.request.UserRequest;
+import com.invillia.bankSpringAndReact.model.request.UserSaveRequest;
 import com.invillia.bankSpringAndReact.model.response.UserResponse;
 import com.invillia.bankSpringAndReact.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -26,9 +25,9 @@ public class UserService {
 
 
     @Transactional
-    public Long createUser(UserRequest userRequest){
+    public Long createUser(UserSaveRequest userSaveRequest){
 
-        User user = userMapper.userRequestToUser(userRequest);
+        User user = userMapper.userRequestToUser(userSaveRequest);
         userRepository.save(user);
 
         return user.getId();
@@ -48,10 +47,10 @@ public class UserService {
                 .orElseThrow(IdNotFoundException::new);
     }
     @Transactional
-    public void update(Long id, UserRequest userRequest){
+    public void update(Long id, UserSaveRequest userSaveRequest){
         User user = userRepository.findById(id)
                 .orElseThrow(IdNotFoundException::new);
-        userMapper.updateUserByUserRequest(user, userRequest);
+        userMapper.updateUserByUserRequest(user, userSaveRequest);
         userRepository.save(user);
     }
 

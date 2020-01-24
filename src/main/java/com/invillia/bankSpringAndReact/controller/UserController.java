@@ -1,9 +1,7 @@
 package com.invillia.bankSpringAndReact.controller;
 
 
-import com.invillia.bankSpringAndReact.model.request.DepositRequest;
-import com.invillia.bankSpringAndReact.model.request.UserRequest;
-import com.invillia.bankSpringAndReact.model.request.WithdrawRequest;
+import com.invillia.bankSpringAndReact.model.request.UserSaveRequest;
 import com.invillia.bankSpringAndReact.model.response.UserResponse;
 import com.invillia.bankSpringAndReact.service.UserService;
 import org.springframework.http.HttpEntity;
@@ -25,8 +23,8 @@ public class UserController {
     }
 
     @PostMapping
-    public HttpEntity<?> create(@Valid @RequestBody final UserRequest userRequest){
-        final Long id = userService.createUser(userRequest);
+    public HttpEntity<?> create(@Valid @RequestBody final UserSaveRequest userSaveRequest){
+        final Long id = userService.createUser(userSaveRequest);
         final URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{id}").build(id);
         return ResponseEntity.created(location).build();
     }
@@ -42,8 +40,8 @@ public class UserController {
 
     @PutMapping("/{id}")
     public HttpEntity<?> update(@PathVariable final Long id,
-                                @Valid @RequestBody final UserRequest userRequest){
-        userService.update(id, userRequest);
+                                @Valid @RequestBody final UserSaveRequest userSaveRequest){
+        userService.update(id, userSaveRequest);
         return ResponseEntity.noContent().build();
     }
 
