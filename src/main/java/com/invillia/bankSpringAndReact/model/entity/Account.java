@@ -1,8 +1,6 @@
 package com.invillia.bankSpringAndReact.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
@@ -12,6 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "accounts")
 public class Account {
 
@@ -30,7 +29,7 @@ public class Account {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @NonNull private User user;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
