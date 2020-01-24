@@ -18,12 +18,6 @@ public class AccountRequest {
     @NotBlank
     private Long userId;
 
-    @NotBlank
-    private String number;
-
-    @NotBlank
-    private String agency;
-
     @NotNull
     private Double balance;
 }

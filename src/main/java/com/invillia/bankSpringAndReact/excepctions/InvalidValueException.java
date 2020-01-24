@@ -5,4 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
 public class InvalidValueException extends RuntimeException {
+
+    public InvalidValueException (final String message){
+        super(message);
+    }
 }

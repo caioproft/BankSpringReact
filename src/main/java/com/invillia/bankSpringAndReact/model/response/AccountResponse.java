@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 public class AccountResponse {
 
     private Long id;
-    private String number;
-    private String agency;
     private String nameUser;
     private Double balance;
 }
